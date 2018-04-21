@@ -23,6 +23,21 @@ server.route([{
       reply(results);
     });
   }
+}, {
+  method: 'GET',
+  path: '/api/recipes/{id}',
+  handler: function (request, reply) {
+    db.get('SELECT * FROM recipes WHERE id = ?', [request.params.id],
+        (err, result) => {
+          if (err) {
+            throw err;
+          }
+          if (typeof result !== 'undefined') {
+            return reply(result);
+          }
+          return reply('Not found').code(404);
+    });
+  }
 }]);
 server.start(() => {
   console.log('Server listening at: ', server.info.uri);
