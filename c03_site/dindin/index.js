@@ -22,7 +22,10 @@ server.register([
     },
     relativeTo: __dirname,
     path: './views',
-    isCached: false
+    layoutPath: './views/layout',
+    layout: true,
+    isCached: false,
+    partialsPath: './views/partials'
   });
   server.route(require('./routes'));
   server.start(() => {
