@@ -10,11 +10,20 @@ server.bind({
 });
 server.register([
     require('dindin-api'),
-    require('inert')
+    require('inert'),
+    require('vision')
 ], (err) => {
   if (err) {
     throw err;
   }
+  server.views({
+    engines: {
+      hbs: require('handlebars')
+    },
+    relativeTo: __dirname,
+    path: './views',
+    isCached: false
+  });
   server.route(require('./routes'));
   server.start(() => {
     console.log('Started server at', server.info.uri);

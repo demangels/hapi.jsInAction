@@ -10,11 +10,13 @@
     <a href="/" id="logo"><img src="/images/logo.png" alt="logo"></a>
     <a href="/login" class="header-button">Login</a>
 </header>
-<a href="/recipes/1" class="recipe-summary">
-    <h3 class="recipe-summary-name">Golden Chicken With Tomatoes and Olives (Italian)</h3>
-    <span class="stars">6 ⭐️</span>
-    <p class="recipe-info">Serves: 4 | Prep: 20mins | Cooking: 30mins</p>
+{{#each recipes}}
+<a href="/recipes/{{id}}" class="recipe-summary">
+    <h3 class="recipe-summary-name">{{name}} ({{cuisine}})</h3>
+    <span class="stars">{{stars}} ⭐️</span>
+    <p class="recipe-info">Serves: {{serves}} | Prep: {{prep_time}} | Cooking: {{cooking_time}}</p>
 </a>
+{{/each}}
 <footer><p>&copy; 2015 DinDin</p></footer>
 </body>
 </html>
