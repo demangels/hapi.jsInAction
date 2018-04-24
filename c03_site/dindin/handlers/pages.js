@@ -9,7 +9,8 @@ exports.home = function (request, reply) {
       throw err;
     }
     reply.view('index', {
-      recipes: payload
+      recipes: payload,
+      user: request.auth.credentials
     });
   });
 };
@@ -23,4 +24,7 @@ exports.viewRecipe = function (request, reply) {
       recipe: payload
     });
   });
+};
+exports.login = function (request, reply) {
+  reply.view('login');
 };
