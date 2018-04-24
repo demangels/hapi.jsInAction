@@ -27,6 +27,24 @@ module.exports = [{
   handler: Actions.login
 }, {
   method: 'GET',
+  path: '/create',
+  config: {
+    auth: {
+      mode: 'required'
+    }
+  },
+  handler: Pages.createRecipe
+}, {
+  method: 'POST',
+  path: '/create',
+  config: {
+    auth: {
+      mode: 'required'
+    }
+  },
+  handler: Actions.createRecipe
+}, {
+  method: 'GET',
   path: '/{param*}',
   handler: Assets.servePublicDirectory
 }];

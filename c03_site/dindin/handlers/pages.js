@@ -21,10 +21,16 @@ exports.viewRecipe = function (request, reply) {
       throw err;
     }
     reply.view('recipe', {
-      recipe: payload
+      recipe: payload,
+      user: request.auth.credentials
     });
   });
 };
 exports.login = function (request, reply) {
   reply.view('login');
+};
+exports.createRecipe = function (request, reply) {
+  reply.view('create', {
+    user: request.auth.credentials
+  })
 };
