@@ -36,3 +36,7 @@ exports.createRecipe = function (request, reply) {
     reply.redirect(this.webBaseUrl);
   });
 };
+exports.logout = function (request, reply) {
+  request.cookieAuth.clear();
+  reply.redirect(this.webBaseUrl);
+};

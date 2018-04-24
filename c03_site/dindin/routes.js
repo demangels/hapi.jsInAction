@@ -45,6 +45,10 @@ module.exports = [{
   handler: Actions.createRecipe
 }, {
   method: 'GET',
+  path: '/logout',
+  handler: Actions.logout
+}, {
+  method: 'GET',
   path: '/{param*}',
   handler: Assets.servePublicDirectory
 }];
