@@ -27,15 +27,16 @@ server.register([
   });
   server.handler('i18n-view', (route, options) => {
     const view = options.view;
+    const context = options.context;
     return function (request, reply) {
       const settings = server.settings.app.i18n;
       const langs = Accept.languages(request.headers['accept-language']);
       for (let i = 0; i < langs.length; ++i) {
         if (settings.supportedLanguages.indexOf(langs[i]) !== -1) {
-          return reply.view(view + '_' + langs[i]);
+          return reply.view(view + '_' + langs[i], context);
         }
       }
-      reply.view(view + '_' + settings.defaultLanguage);
+      reply.view(view + '_' + settings.defaultLanguage, context);
     }
   });
   server.route([{
@@ -43,7 +44,8 @@ server.register([
     path: '/',
     handler: {
       'i18n-view': {
-        view: 'index'
+        view: 'index',
+        context: {name: 'steven'}
       }
     }
   }]);
