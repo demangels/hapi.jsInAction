@@ -2,6 +2,7 @@
 
 const Hapi = require('hapi');
 const Path = require('path');
+const Accept = require('accept');
 const server = new Hapi.Server();
 
 server.connection({port: 4000});
@@ -21,8 +22,17 @@ server.register([
   server.route([{
     method: 'GET',
     path: '/',
-    handler: {
-      view: 'index'
+    handler: function (request, reply) {
+      const supportedLanguages = ['en', 'fr', 'zh'];
+      const defaultLanguage = 'en';
+      const templateBasename = 'index';
+      const langs = Accept.languages(request.headers['accept-language']);
+      for (let i = 0; i < langs.length; ++i) {
+        if (supportedLanguages.indexOf(langs[i]) !== -1) {
+          return reply.view(templateBasename + '_' + langs[i]);
+        }
+      }
+      reply.view(templateBasename + '_' + defaultLanguage);
     }
   }]);
   server.start(() => {
