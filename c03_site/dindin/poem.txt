@@ -1,0 +1,18 @@
+$ curl -X POST -H 'Content-type: application/json' -d '{"message": "65e11a21872da5477187bcdbfa1ef25f"}' http://localhost:4000
+server output:
+Fri Apr 27 2018 10:41:08 GMT+0800 (CST): Incoming payload
+Encrypted message: 65e11a21872da5477187bcdbfa1ef25f
+Decrypted message: Ink is dry
+Converted message: I have the blueprints
+$ curl -X POST -H 'Content-type: application/json' -d '{"message": "ef2de8d3153173f7930901287fa768"}' http://localhost:4000
+server output:
+Fri Apr 27 2018 10:45:28 GMT+0800 (CST): Incoming payload
+Encrypted message: ef2de8d315317333f7930901287fa768
+Decrypted message: Bird has flown
+Converted message: I am making my escape
+$ curl -X POST -H 'Content-type: application/json' -d '{"message": "0dd31dde3980c1b7ecee12e0c52d85a5"}' http://localhost:4000
+server output:
+Fri Apr 27 2018 10:46:56 GMT+0800 (CST): Incoming payload
+Encrypted message: 0dd31dde3980c1b7ecee12e0c52d85a5
+Decrypted message: Catflap is open
+Converted message: I have infiltrated the base

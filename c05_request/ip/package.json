@@ -1,0 +1,16 @@
+{
+  "name": "ip",
+  "version": "1.0.0",
+  "description": "ip屏蔽",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "boom": "^3.2.2",
+    "hapi": "^13.5.3",
+    "netmask": "^1.0.6"
+  }
+}
