@@ -1,16 +1,62 @@
 const Boom = require('boom');
 const Hapi = require('hapi');
+const Joi = require('joi');
+const Path = require('path');
 const server = new Hapi.Server();
 
 server.connection({port: 4000});
-server.route({
+server.route([{
   method: 'GET',
-  path: '/v4/users',
+  path: '/error',
   handler: function (request, reply) {
-    const err = Boom.notImplemented('Still working on this');
-    reply(err);
+    return reply(new Error('Something bad happened!'));
   }
+}, {
+  method: 'GET',
+  path: '/newFeature',
+  handler: function (request, reply) {
+    reply(Boom.notImplemented());
+  }
+}, {
+  config: {
+    validate: {
+      params: {
+        name: Joi.string().min(4)
+      }
+    }
+  },
+  method: 'GET',
+  path: '/name/{name}',
+  handler: function (request, reply) {
+    return reply('OK');
+  }
+}]);
+server.ext('onPreResponse', (request, reply) => {
+  if (request.response.isBoom) {
+    const err = request.response;
+    const errName = err.output.payload.error;
+    const statusCode = err.output.payload.statusCode;
+    return reply.view('error', {
+      statusCode: statusCode,
+      errName: errName
+    }).code(statusCode);
+  }
+  reply.continue();
 });
-server.start(() => {
-  console.log('Server running at:', server.info.uri);
+server.register(require('vision'), (err) => {
+  if (err) {
+    throw err;
+  }
+  server.views({
+    engines: {
+      hbs: require('handlebars')
+    },
+    path: Path.join(__dirname, 'templates')
+  });
+  server.start((err) => {
+    if (err) {
+      throw err;
+    }
+    console.log('Server running at:', server.info.uri);
+  });
 });

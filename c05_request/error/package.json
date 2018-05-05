@@ -10,6 +10,9 @@
   "license": "ISC",
   "dependencies": {
     "boom": "^3.2.2",
-    "hapi": "^13.5.3"
+    "handlebars": "^4.0.11",
+    "hapi": "^13.5.3",
+    "joi": "^8.4.2",
+    "vision": "^4.1.1"
   }
 }
