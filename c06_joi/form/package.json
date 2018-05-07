@@ -1,0 +1,17 @@
+{
+  "name": "form",
+  "version": "1.0.0",
+  "description": "hapi加Joi进行Web表单验证",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "handlebars": "^4.0.11",
+    "hapi": "^13.5.3",
+    "joi": "^8.4.2",
+    "vision": "^4.1.1"
+  }
+}
