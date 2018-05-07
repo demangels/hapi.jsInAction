@@ -1,31 +1,33 @@
 <div class="row" id="formErrors">
   <div class="col-sm-10 col-sm-offset-2">
-    {{!-- Error summary goes here --}}
+    {{# each errors}}
+      <p class="bg-danger">{{this}}</p>
+    {{/each}}
   </div>
 </div>
 <form action="/" class="form-horizontal" method="post">
   <div class="form-group">
     <label for="name" class="col-sm-2 control-label">Name</label>
     <div class="col-sm-10">
-      <input name="name" type="text" class="form-control">
+      <input name="name" type="text" class="form-control{{# if errors.name}} has-error{{/if}}" value="{{values.name}}">
     </div>
   </div>
   <div class="form-group">
     <label for="email" class="col-sm-2 control-label">Email address</label>
     <div class="col-sm-10">
-      <input name="email" type="text" class="form-control">
+      <input name="email" type="text" class="form-control{{# if errors.email}} has-error{{/if}}" value="{{values.email}}">
     </div>
   </div>
   <div class="form-group">
     <label for="age" class="col-sm-2 control-label">Age</label>
     <div class="col-sm-10">
-      <input name="age" type="text" class="form-control">
+      <input name="age" type="text" class="form-control{{# if errors.age}} has-error{{/if}}" value="{{values.age}}">
     </div>
   </div>
   <div class="form-group">
     <label for="tshirt" class="col-sm-2 control-label">T-shirt size</label>
     <div class="col-sm-10">
-      <input name="tshirt" type="text" class="form-control">
+      <input name="tshirt" type="text" class="form-control{{# if errors.tshirt}} has-error{{/if}}" value="{{values.tshirt}}">
     </div>
   </div>
   <div class="form-group">
